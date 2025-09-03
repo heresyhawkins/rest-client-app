@@ -1,3 +1,3 @@
-export * from './ui/logo/Logo.tsx';
-export * from './ui/external-link/ExternalLink.tsx';
-export * from './ui/footer/Footer.tsx';
+export * from "./Logo/Logo.tsx";
+export * from "./ExternalLink/ExternalLink.tsx";
+export * from "./Footer/Footer.tsx";
