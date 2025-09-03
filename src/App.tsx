@@ -1,6 +1,10 @@
+import { Footer } from "@components";
+
 function App() {
   return (
-    <></>
+    <>
+      <Footer/>
+    </>
   )
 }
 
