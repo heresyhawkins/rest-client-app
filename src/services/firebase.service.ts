@@ -18,7 +18,8 @@ const db = getFirestore(app);
 
 export const loginWithEmailAndPassword = async (email: string, password: string) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const response = await signInWithEmailAndPassword(auth, email, password);
+    return response.user;
   } catch (error) {
     handleFirebaseError(error);
   }
@@ -32,7 +33,8 @@ export const registerUserWithEmailAndPassword = async (email: string, password: 
       uid: user.uid,
       email,
       authProvider: 'local'
-    })
+    });
+    return user;
   } catch (error) {
     handleFirebaseError(error);
   }
