@@ -24,12 +24,18 @@ export const Header: FC = () => {
     <header
       className={`sticky top-0 z-50 flex items-center justify-between px-6 transition-all duration-300 ${
         scrolled
-          ? "bg-violet-400 h-12 shadow-md"
+          ? "bg-violet-400 h-14 shadow-2xl"
           : "bg-violet-300 h-20"
         } text-violet-50`}
     >
       <div className="flex items-center gap-2">
-        <BiCool className="size-15 m-2 text-violet-500"/>
+        <BiCool
+          className={`transition-all duration-300 ${
+            scrolled
+              ? "size-12 text-violet-700"
+              : "size-14 text-violet-500"
+          }`}
+        />
       </div>
       
       <div>
