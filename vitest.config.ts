@@ -10,7 +10,8 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'html'],
       reportsDirectory: './coverage',
-      exclude: ['node_modules/', 'src/setupTests.ts', '*.config.ts', '*.config.js', '**/*.d.ts'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['node_modules/**', 'src/setupTests.ts', '*.config.ts', '*.config.js', '**/*.d.ts'],
     },
   },
 })
