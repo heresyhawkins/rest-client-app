@@ -1,10 +1,24 @@
-import type { AnchorHTMLAttributes, FC, ReactNode } from "react";
+import type { AnchorHTMLAttributes, FC, ReactNode } from 'react';
 
 type ExternalLinkProps = {
   children: ReactNode;
   href: string;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export const ExternalLink: FC<ExternalLinkProps> = ({ children, href, ...props }) => {
-  return <a className="flex gap-1 items-center" href={href} target="_blank" {...props}>{children}</a>
+export const ExternalLink: FC<ExternalLinkProps> = ({
+  children,
+  href,
+  ...props
+}) => {
+  return (
+    <a
+      className="flex gap-1 items-center"
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      {...props}
+    >
+      {children}
+    </a>
+  );
 };
