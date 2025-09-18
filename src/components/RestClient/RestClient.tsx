@@ -98,7 +98,7 @@ export const RestClient: FC = () => {
     setIsLoading(true);
 
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000); // 10 сек
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
     try {
       const options: RequestInit = {
@@ -113,17 +113,14 @@ export const RestClient: FC = () => {
         signal: controller.signal,
       };
 
-      // 👇 Добавляем body только если метод НЕ GET
       if (method !== 'GET' && body) {
         options.body = body;
       }
 
       const res = await fetch(endpoint, options);
 
-      clearTimeout(timeout);
-
       const contentType = res.headers.get('content-type') || '';
-      let data;
+      let data: unknown;
       if (contentType.includes('application/json')) {
         data = await res.json();
       } else {
@@ -144,6 +141,7 @@ export const RestClient: FC = () => {
         });
       }
     } finally {
+      clearTimeout(timeout);
       setIsLoading(false);
     }
   };
