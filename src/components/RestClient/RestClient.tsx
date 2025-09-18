@@ -175,6 +175,7 @@ export const RestClient: FC = () => {
         )}
 
         <button
+          data-testid="send-btn"
           onClick={handleSubmit}
           disabled={!canSend || isLoading}
           className={`px-4 py-2 rounded transition-colors ${
