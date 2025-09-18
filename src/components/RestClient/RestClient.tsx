@@ -12,7 +12,10 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from '@i18n/navigation';
 import { buildRestUrl } from '@utils/buildRestUrl';
 
-type APIResponse = { error: string } | { status: number; data: unknown } | null;
+type APIResponse =
+  | { error: string }
+  | { status: number; statusText: string; data: unknown }
+  | null;
 
 export const RestClient: FC = () => {
   const t = useTranslations('RestClient');
@@ -93,25 +96,53 @@ export const RestClient: FC = () => {
     if (!canSend || isLoading) return;
 
     setIsLoading(true);
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000); // 10 сек
+
     try {
-      const res = await fetch(endpoint, {
+      const options: RequestInit = {
         method,
         headers: headers.reduce(
           (acc, h) => {
-            acc[h.key] = h.value;
+            if (h.key) acc[h.key] = h.value;
             return acc;
           },
           {} as Record<string, string>
         ),
-        body: method === 'GET' || !body ? undefined : body,
-      });
+        signal: controller.signal,
+      };
 
-      const data = await res.json();
-      setResponse({ status: res.status, data });
-    } catch (err) {
+      // 👇 Добавляем body только если метод НЕ GET
+      if (method !== 'GET' && body) {
+        options.body = body;
+      }
+
+      const res = await fetch(endpoint, options);
+
+      clearTimeout(timeout);
+
+      const contentType = res.headers.get('content-type') || '';
+      let data;
+      if (contentType.includes('application/json')) {
+        data = await res.json();
+      } else {
+        data = await res.text();
+      }
+
       setResponse({
-        error: err instanceof Error ? err.message : 'Unknown error',
+        status: res.status,
+        statusText: res.statusText,
+        data,
       });
+    } catch (err) {
+      if ((err as Error).name === 'AbortError') {
+        setResponse({ error: 'Request timed out' });
+      } else {
+        setResponse({
+          error: err instanceof Error ? err.message : 'Unknown error',
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -162,7 +193,16 @@ export const RestClient: FC = () => {
             <h2 className="text-lg font-semibold mb-2 text-gray-700">
               {t('response')}
             </h2>
-            <ResponseViewer data={response} />
+            {'status' in response && (
+              <p className="text-sm text-gray-600 mb-2">
+                {response.status} {response.statusText}
+              </p>
+            )}
+            {'error' in response ? (
+              <p className="text-red-600">{response.error}</p>
+            ) : (
+              <ResponseViewer data={response.data} />
+            )}
           </div>
         )}
       </div>
