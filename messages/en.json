@@ -1,0 +1,95 @@
+{
+  "MainPage": {
+    "welcome": "Welcome!",
+    "welcomeBack": "Welcome back, {user}!",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "rest": "REST Client",
+    "history": "History",
+    "variables": "Variables"
+  },
+  "SignInPage": {
+    "text": "This is Sign In page"
+  },
+  "SignUpPage": {
+    "text": "This is Sign Up page"
+  },
+  "RestClientPage": {
+    "text": "This is Rest Client page"
+  },
+  "NotFoundPage": {
+    "text": "Oops! It looks like the page you requested wasn't found! Please use the header links to navigate to one of the existing pages."
+  },
+  "Footer": {
+    "developed by": "developed by"
+  },
+  "Header": {
+    "main": "Main",
+    "signout": "Sign out",
+    "signin": "Sign in",
+    "signup": "Sign up"
+  },
+  "RestClient": {
+    "title": "REST Client",
+    "sendRequest": "Send Request",
+    "invalidJson": "Invalid JSON in body. Fix syntax or check your variables to send.",
+    "response": "Response",
+    "button": "Add",
+    "text": "Enter request body...",
+    "error": "Please enter a valid URL (e.g. https://example.com) or check your variables",
+    "headersError": "Please check your variables",
+    "copy": "copy",
+    "method": "Method",
+    "endpoint": "Endpoint",
+    "headers": "Headers",
+    "body": "Body",
+    "textButton": "Text",
+    "prettify": "Prettify"
+  },
+  "AuthForm": {
+    "email": "Email:",
+    "password": "Password:",
+    "repeat-password": "Confirm password:",
+    "sign-in": "Sign In",
+    "sign-up": "Sign Up",
+    "errors": {
+      "invalidEmail": "Invalid email",
+      "requiredEmail": "Email is required",
+      "requiredPassword": "Password is required",
+      "minPassword": "Password must be at least length characters",
+      "lowercasePassword": "Password must contain a lowercase letter",
+      "uppercasePassword": "Password must contain an uppercase letter",
+      "numberPassword": "Password must contain a number",
+      "specialPassword": "Password must contain a special character",
+      "requiredConfirm": "Confirm password",
+      "matchPasswords": "Passwords must match"
+    }
+  },
+  "Messages" : {
+    "requestSuccess": "Request processed successfully",
+    "requestError": "Failed to fetch. Reason: {error}"
+  },
+  "VariablesPage": {
+    "name": "Name: ",
+    "value": "Value: ",
+    "add": "Add"
+  },
+  "History": {
+    "noRequests": "You have not yet executed requests",
+    "tryRestClient": "Try creating your first request in the REST Client.",
+    "restClient": "REST Client",
+    "history": "History Requests",
+    "time": "Time",
+    "status": "Status",
+    "date": "Date",
+    "error": "Error",
+    "method": "Method",
+    "url": "Url",
+    "errorUrl": "Invalid URL",
+    "loading": "Loading Content...",
+    "latency": "Latency",
+    "responseSize": "Response Size",
+    "requestSize": "Request Size",
+    "failedToLoadHistory": "Failed to load request history. Please try again later."
+  }
+}

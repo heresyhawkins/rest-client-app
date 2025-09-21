@@ -1,0 +1,11 @@
+. "$(dirname "$0")/_/husky.sh"
+
+npm run build && npm run test:coverage
+
+if [ $? -ne 0 ]; then
+  echo "Push canceled. Error in test/build"
+  exit 1
+fi
+
+echo "Build was successful and all tests are completed"
+
